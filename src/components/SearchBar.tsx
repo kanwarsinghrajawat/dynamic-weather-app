@@ -1,17 +1,20 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 import { useCitySuggestions } from "../hooks/useCitySuggestions";
 import { UseWeatherData } from "../hooks/useWeatherData";
 import SuggestionsList from "./SuggestionList";
 
 const SearchBar: React.FC = () => {
   const [city, setCity] = useState<string>("");
-  const {
-    suggestions,
-    loading,
-    error,
-    handleDebouncedSearch,
-    clearSuggestions,
-  } = useCitySuggestions();
+  const { fetchWeather } = UseWeatherData();
+
+  const { loading, error } = useSelector(
+    (state: RootState) => state.weatherData
+  );
+
+  const { suggestions, handleDebouncedSearch, clearSuggestions } =
+    useCitySuggestions();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -22,7 +25,7 @@ const SearchBar: React.FC = () => {
   const handleCityClick = (selectedCity: string) => {
     setCity(selectedCity);
     clearSuggestions();
-    UseWeatherData(selectedCity);
+    fetchWeather(selectedCity);
   };
 
   return (
@@ -35,7 +38,10 @@ const SearchBar: React.FC = () => {
         className="p-2 border rounded w-full"
       />
 
-      {loading && <p className="text-sm text-gray-500 mt-1">Loading...</p>}
+      {loading && (
+        <p className="text-sm text-blue-500 mt-1">Fetching weather...</p>
+      )}
+      {error && <p className="text-sm text-red-500 mt-1">{error}</p>}
 
       <SuggestionsList
         suggestions={suggestions}

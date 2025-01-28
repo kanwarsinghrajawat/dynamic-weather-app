@@ -1,12 +1,16 @@
 import "./App.css";
 import React from "react";
-import { UseWeatherData } from "./hooks/useWeatherData";
 import Header from "./components/Header";
+import { UseWeatherData } from "./hooks/useWeatherData";
+import { useSelector } from "react-redux";
+import { RootState } from "./store";
 
 const App: React.FC = () => {
   const handleClick = () => {
-    UseWeatherData("bangalore");
+    UseWeatherData();
   };
+  const weatherData = useSelector((state: RootState) => state.weatherData);
+  console.log(weatherData, "weatherData");
 
   return (
     <div>

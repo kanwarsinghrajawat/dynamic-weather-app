@@ -1,5 +1,5 @@
 export interface SuggestionsListProps {
   suggestions: string[];
-  error: boolean;
+  error: string | null;
   onSelect: (city: string) => void;
 }
