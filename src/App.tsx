@@ -1,6 +1,7 @@
 import "./App.css";
 import React from "react";
 import { UseWeatherData } from "./hooks/useWeatherData";
+import Header from "./components/Header";
 
 const App: React.FC = () => {
   const handleClick = () => {
@@ -9,6 +10,7 @@ const App: React.FC = () => {
 
   return (
     <div>
+      <Header />
       <button onClick={handleClick}>Get Weather</button>
     </div>
   );
