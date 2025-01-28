@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store";
 import { toggleTheme } from "../store/slices/themeSlice";
 import { ThemeMode } from "../types/theme";
+import SearchBar from "./SearchBar";
 
 const Header: React.FC = () => {
   const theme = useSelector((state: RootState) => state.theme.theme);
@@ -24,6 +25,7 @@ const Header: React.FC = () => {
       >
         Toggle Theme ({theme === ThemeMode.LIGHT ? "🌞 Light" : "🌙 Dark"})
       </button>
+      <SearchBar />
     </>
   );
 };
