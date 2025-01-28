@@ -8,9 +8,7 @@ interface ThemeState {
   theme: ThemeMode;
 }
 
-const initialState: ThemeState = {
-  theme: storedTheme,
-};
+const initialState: ThemeState = { theme: storedTheme };
 
 const themeSlice = createSlice({
   name: "theme",
@@ -20,6 +18,12 @@ const themeSlice = createSlice({
       state.theme =
         state.theme === ThemeMode.LIGHT ? ThemeMode.DARK : ThemeMode.LIGHT;
       localStorage.setItem("theme", state.theme);
+
+      if (state.theme === ThemeMode.DARK) {
+        document.documentElement.classList.add(ThemeMode.DARK);
+      } else {
+        document.documentElement.classList.remove(ThemeMode.DARK);
+      }
     },
   },
 });
