@@ -11,4 +11,5 @@ export interface UseCitySuggestionsResult {
   loading: boolean;
   error: boolean;
   handleDebouncedSearch: (query: string) => void;
+  clearSuggestions: () => void;
 }

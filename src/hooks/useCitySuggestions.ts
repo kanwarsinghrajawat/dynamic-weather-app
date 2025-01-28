@@ -65,6 +65,10 @@ export const useCitySuggestions = (): UseCitySuggestionsResult => {
     }, 300);
   };
 
+  const clearSuggestions = () => {
+    setSuggestions([]);
+  };
+
   useEffect(() => {
     return () => {
       if (debounceTimeout.current) {
@@ -73,5 +77,11 @@ export const useCitySuggestions = (): UseCitySuggestionsResult => {
     };
   }, []);
 
-  return { suggestions, loading, error, handleDebouncedSearch };
+  return {
+    suggestions,
+    loading,
+    error,
+    handleDebouncedSearch,
+    clearSuggestions,
+  };
 };

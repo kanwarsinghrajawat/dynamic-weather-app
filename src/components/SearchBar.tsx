@@ -5,8 +5,13 @@ import SuggestionsList from "./SuggestionList";
 
 const SearchBar: React.FC = () => {
   const [city, setCity] = useState<string>("");
-  const { suggestions, loading, error, handleDebouncedSearch } =
-    useCitySuggestions();
+  const {
+    suggestions,
+    loading,
+    error,
+    handleDebouncedSearch,
+    clearSuggestions,
+  } = useCitySuggestions();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -16,6 +21,7 @@ const SearchBar: React.FC = () => {
 
   const handleCityClick = (selectedCity: string) => {
     setCity(selectedCity);
+    clearSuggestions();
     UseWeatherData(selectedCity);
   };
 
