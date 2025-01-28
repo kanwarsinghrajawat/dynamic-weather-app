@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_KEY, API_URL } from "../constants/api";
+import { API_KEY, WEATHER_DATA_API_URL } from "../constants/api";
 import { WeatherData } from "../types/api";
 
 export const UseWeatherData = async (
@@ -10,7 +10,7 @@ export const UseWeatherData = async (
       throw new Error("API key is missing");
     }
 
-    const response = await axios.get<WeatherData>(API_URL, {
+    const response = await axios.get<WeatherData>(WEATHER_DATA_API_URL, {
       params: {
         q: city,
         appid: API_KEY,

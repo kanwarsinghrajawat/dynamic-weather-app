@@ -1,34 +1,40 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
+import { useCitySuggestions } from "../hooks/useCitySuggestions";
 import { UseWeatherData } from "../hooks/useWeatherData";
+import SuggestionsList from "./SuggestionList";
 
 const SearchBar: React.FC = () => {
   const [city, setCity] = useState<string>("");
-  const debounceTimeout = useRef<NodeJS.Timeout | null>(null); // Stores debounce timer
+  const { suggestions, loading, error, handleDebouncedSearch } =
+    useCitySuggestions();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCity(e.target.value);
+    const inputValue = e.target.value;
+    setCity(inputValue);
+    handleDebouncedSearch(inputValue);
+  };
 
-    // Clear previous debounce timer
-    if (debounceTimeout.current) {
-      clearTimeout(debounceTimeout.current);
-    }
-
-    // Set new debounce timer
-    debounceTimeout.current = setTimeout(() => {
-      if (e.target.value.trim()) {
-        UseWeatherData(e.target.value); // Call API without waiting for response
-      }
-    }, 500); // 500ms debounce delay
+  const handleCityClick = (selectedCity: string) => {
+    setCity(selectedCity);
+    UseWeatherData(selectedCity);
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center relative w-80">
       <input
         type="text"
         value={city}
         onChange={handleInputChange}
         placeholder="Enter city name..."
-        className="p-2 border rounded w-80"
+        className="p-2 border rounded w-full"
+      />
+
+      {loading && <p className="text-sm text-gray-500 mt-1">Loading...</p>}
+
+      <SuggestionsList
+        suggestions={suggestions}
+        error={error}
+        onSelect={handleCityClick}
       />
     </div>
   );
