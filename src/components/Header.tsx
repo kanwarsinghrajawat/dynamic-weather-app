@@ -15,17 +15,19 @@ const Header: React.FC = () => {
 
   return (
     <>
+      <div className="flex">
+        <SearchBar />
+
+        <button
+          onClick={() => dispatch(toggleTheme())}
+          className="px-4 py-2 rounded bg-blue-500 dark:bg-red-500 text-white"
+        >
+          ({theme === ThemeMode.LIGHT ? "🌞 Light" : "🌙 Dark"})
+        </button>
+      </div>
       <p className="bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
         Themed content
       </p>
-
-      <button
-        onClick={() => dispatch(toggleTheme())}
-        className="px-4 py-2 rounded bg-blue-500 dark:bg-red-500 text-white"
-      >
-        Toggle Theme ({theme === ThemeMode.LIGHT ? "🌞 Light" : "🌙 Dark"})
-      </button>
-      <SearchBar />
     </>
   );
 };
