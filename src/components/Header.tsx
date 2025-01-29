@@ -8,7 +8,11 @@ import { FiSearch } from "react-icons/fi";
 import { MdOutlineDarkMode, MdOutlineWbSunny } from "react-icons/md";
 import { ModalWrapper } from "../utils/ModalWrapper";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  setSelectedCity: (city: string | null) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ setSelectedCity }) => {
   const theme = useSelector((state: RootState) => state.theme.theme);
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -44,7 +48,10 @@ const Header: React.FC = () => {
         </button>
       </header>
       <ModalWrapper isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <SearchBar setIsModalOpen={setIsModalOpen} />
+        <SearchBar
+          setIsModalOpen={setIsModalOpen}
+          setSelectedCity={setSelectedCity}
+        />
       </ModalWrapper>
     </>
   );

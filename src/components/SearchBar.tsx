@@ -7,29 +7,26 @@ import { useCitySuggestions } from "../hooks/useCitySuggestions";
 
 interface SearchBarProps {
   setIsModalOpen: (value: boolean) => void;
+  setSelectedCity: (city: string | null) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ setIsModalOpen }) => {
+const SearchBar: React.FC<SearchBarProps> = ({
+  setIsModalOpen,
+  setSelectedCity,
+}) => {
   const [city, setCity] = useState<string>("");
   const { fetchWeather } = UseWeatherData();
-
+  const { suggestions, handleDebouncedSearch, clearSuggestions } =
+    useCitySuggestions();
   const { loading, error } = useSelector(
     (state: RootState) => state.weatherData
   );
-
-  const { suggestions, handleDebouncedSearch, clearSuggestions } =
-    useCitySuggestions();
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value;
-    setCity(inputValue);
-    handleDebouncedSearch(inputValue);
-  };
 
   const handleCityClick = (selectedCity: string) => {
     setCity(selectedCity);
     clearSuggestions();
     fetchWeather(selectedCity);
+    setSelectedCity(selectedCity); // ✅ Immediately set new city as active
     setIsModalOpen(false);
   };
 
@@ -38,8 +35,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ setIsModalOpen }) => {
       <div className="flex items-end justify-end">
         <button
           onClick={() => setIsModalOpen(false)}
-          className="px-3 py-1 bg-gray-800/20 text-white rounded-md 
-        shadow-md text-end mb-4 active:scale-95 transition-transform ease-in-out duration-150"
+          className="px-3 py-1 bg-gray-800/20 text-white rounded-md shadow-md text-end mb-4 active:scale-95 transition-transform ease-in-out duration-150"
         >
           ESC
         </button>
@@ -49,17 +45,16 @@ const SearchBar: React.FC<SearchBarProps> = ({ setIsModalOpen }) => {
         <input
           type="text"
           value={city}
-          onChange={handleInputChange}
+          onChange={(e) => {
+            setCity(e.target.value);
+            handleDebouncedSearch(e.target.value);
+          }}
           placeholder="Enter city name..."
-          className="p-2 border rounded w-full bg-gray-200 text-black border-gray-300 
-          dark:border-gray-700 focus:ring-2 focus:ring-blue-500"
+          className="p-2 border rounded w-full bg-gray-200 text-black border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-blue-500"
         />
 
         {suggestions.length > 0 && (
-          <div
-            className="top-full left-0 w-full bg-gray-100 dark:bg-gray-900 text-black dark:text-white 
-          border border-gray-300 dark:border-gray-700 rounded shadow-lg z-50 mt-1"
-          >
+          <div className="top-full left-0 w-full bg-gray-100 dark:bg-gray-900 text-black dark:text-white border border-gray-300 dark:border-gray-700 rounded shadow-lg z-50 mt-1">
             <SuggestionsList
               suggestions={suggestions}
               error={error}

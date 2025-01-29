@@ -17,7 +17,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-cover bg-center bg-no-repeat dark:bg-[url('/bg.jpg')] bg-[url('/light-bg.jpg')] p-8">
-      <Header />
+      <Header setSelectedCity={setSelectedCity} />
       <div className="flex flex-col lg:flex-row mt-4 p-6">
         <div className="lg:w-1/3 w-full lg:pr-4">
           <CitiesList
