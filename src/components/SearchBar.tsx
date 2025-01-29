@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
-import { useCitySuggestions } from "../hooks/useCitySuggestions";
 import { UseWeatherData } from "../hooks/useWeatherData";
 import SuggestionsList from "./SuggestionList";
+import { useCitySuggestions } from "../hooks/useCitySuggestions";
 
 interface SearchBarProps {
   setIsModalOpen: (value: boolean) => void;
@@ -30,7 +30,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ setIsModalOpen }) => {
     setCity(selectedCity);
     clearSuggestions();
     fetchWeather(selectedCity);
-    setIsModalOpen(false); // ✅ Close modal when city is selected
+    setIsModalOpen(false); // Close modal when city is selected
   };
 
   return (
