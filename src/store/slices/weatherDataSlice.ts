@@ -2,9 +2,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { WeatherData } from "../../types/api";
 import { WeatherState } from "../types";
 
+const loadCitiesFromLocalStorage = (): Record<string, WeatherData> => {
+  const storedCities = localStorage.getItem("weatherCities");
+  return storedCities ? JSON.parse(storedCities) : {};
+};
+
 const initialState: WeatherState = {
   data: null,
-  cities: {}, // Stores weather data keyed by city name
+  cities: loadCitiesFromLocalStorage(),
   loading: false,
   error: null,
 };
@@ -21,6 +26,7 @@ export const weatherDataSlice = createSlice({
       state.data = action.payload;
       state.loading = false;
       state.cities[action.payload.name] = action.payload;
+      localStorage.setItem("weatherCities", JSON.stringify(state.cities));
     },
     fetchWeatherFailure: (state, action: PayloadAction<string>) => {
       state.error = action.payload;
@@ -29,6 +35,7 @@ export const weatherDataSlice = createSlice({
     removeCity: (state, action: PayloadAction<string>) => {
       const cityName = action.payload;
       delete state.cities[cityName];
+      localStorage.setItem("weatherCities", JSON.stringify(state.cities));
     },
   },
 });

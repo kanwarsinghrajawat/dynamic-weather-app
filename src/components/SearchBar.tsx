@@ -26,7 +26,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
     setCity(selectedCity);
     clearSuggestions();
     fetchWeather(selectedCity);
-    setSelectedCity(selectedCity); // ✅ Immediately set new city as active
+    setSelectedCity(selectedCity);
     setIsModalOpen(false);
   };
 

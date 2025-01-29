@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ThemeMode } from "../../types/theme";
 
 const storedTheme =
-  (localStorage.getItem("theme") as ThemeMode) || ThemeMode.LIGHT;
+  (localStorage.getItem("theme") as ThemeMode) || ThemeMode.DARK;
 
 interface ThemeState {
   theme: ThemeMode;
