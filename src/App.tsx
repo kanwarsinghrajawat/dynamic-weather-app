@@ -1,21 +1,12 @@
 import "./App.css";
 import React from "react";
 import Header from "./components/Header";
-import { UseWeatherData } from "./hooks/useWeatherData";
-import { useSelector } from "react-redux";
-import { RootState } from "./store";
 
 const App: React.FC = () => {
-  const handleClick = () => {
-    UseWeatherData();
-  };
-  const weatherData = useSelector((state: RootState) => state.weatherData);
-  console.log(weatherData, "weatherData");
-
   return (
-    <div>
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat bg-[url('/bg.jpg')] p-8">
       <Header />
-      <button onClick={handleClick}>Get Weather</button>
+      <div className="flex"></div>
     </div>
   );
 };

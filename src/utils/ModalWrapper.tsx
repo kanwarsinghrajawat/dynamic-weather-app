@@ -46,7 +46,7 @@ const ModalWrapper: React.FC<ModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 dark:bg-gray-900 dark:bg-opacity-80 z-50">
+    <div className="fixed inset-0 h-[90vh] flex items-center justify-center bg-black bg-opacity-50 dark:bg-gray-900 dark:bg-opacity-80 z-100 rounded-lg">
       <div
         ref={modalRef}
         className={clsx(
