@@ -13,3 +13,8 @@ export interface UseCitySuggestionsResult {
   handleDebouncedSearch: (query: string) => void;
   clearSuggestions: () => void;
 }
+
+export interface CitiesListProps {
+  selectedCity: string | null;
+  setSelectedCity: (city: string | null) => void;
+}

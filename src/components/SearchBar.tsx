@@ -5,7 +5,7 @@ import { UseWeatherData } from "../hooks/useWeatherData";
 import SuggestionsList from "./SuggestionList";
 import { useCitySuggestions } from "../hooks/useCitySuggestions";
 
-interface SearchBarProps {
+export interface SearchBarProps {
   setIsModalOpen: (value: boolean) => void;
   setSelectedCity: (city: string | null) => void;
 }

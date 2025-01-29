@@ -7,10 +7,7 @@ import SearchBar from "./SearchBar";
 import { FiSearch } from "react-icons/fi";
 import { MdOutlineDarkMode, MdOutlineWbSunny } from "react-icons/md";
 import { ModalWrapper } from "../utils/ModalWrapper";
-
-interface HeaderProps {
-  setSelectedCity: (city: string | null) => void;
-}
+import { HeaderProps } from "../types/headerProps";
 
 const Header: React.FC<HeaderProps> = ({ setSelectedCity }) => {
   const theme = useSelector((state: RootState) => state.theme.theme);

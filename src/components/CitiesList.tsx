@@ -3,11 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store";
 import { removeCity } from "../store/slices/weatherDataSlice";
 import { FiTrash2 } from "react-icons/fi";
-
-interface CitiesListProps {
-  selectedCity: string | null;
-  setSelectedCity: (city: string | null) => void;
-}
+import { CitiesListProps } from "../types/citySuggestionProps";
 
 const CitiesList: React.FC<CitiesListProps> = ({
   selectedCity,

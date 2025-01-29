@@ -10,9 +10,9 @@ export interface WeatherData {
     pressure: number;
     humidity: number;
   };
-  visibility: number; // Added visibility
+  visibility: number;
   wind: { speed: number; deg: number };
-  clouds: { all: number }; // Added clouds
+  clouds: { all: number };
   dt: number;
   sys: {
     type: number;
