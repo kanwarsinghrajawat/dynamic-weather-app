@@ -27,7 +27,7 @@ const CitiesList: React.FC<CitiesListProps> = ({
   }
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 sm:h-[37rem] overflow-y-auto max-h-[20rem]">
       {cityNames.map((cityName) => {
         const isSelected = cityName === selectedCity;
         const cityWeather = cities[cityName];
