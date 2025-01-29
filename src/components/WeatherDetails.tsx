@@ -27,14 +27,13 @@ const WeatherDetails: React.FC<WeatherDetailsProps> = ({ cityName }) => {
   const weatherCondition = cityWeather.weather[0].main.toLowerCase();
   const backgroundImages: { [key: string]: string } = {
     clear: "/sunny.jpg",
-    clouds: "/cloudy.jpg",
+    clouds: "/cloud-sky.jpg",
     rain: "/rainy.jpg",
     snow: "/snow.jpg",
     fog: "/foggy.jpg",
   };
 
-  const backgroundImageUrl =
-    backgroundImages[weatherCondition] || "/cloudy.jpg";
+  const backgroundImageUrl = backgroundImages[weatherCondition];
 
   const sunriseTime = new Date(
     cityWeather.sys.sunrise * 1000
@@ -45,7 +44,7 @@ const WeatherDetails: React.FC<WeatherDetailsProps> = ({ cityName }) => {
 
   return (
     <div
-      className="bg-cover bg-center text-white p-6 rounded-lg shadow-lg"
+      className="bg-cover bg-center text-white p-6 rounded-lg shadow-lg bg-white/20 dark:bg-gray-900/20"
       style={{ backgroundImage: `url(${backgroundImageUrl})` }}
     >
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
@@ -66,7 +65,7 @@ const WeatherDetails: React.FC<WeatherDetailsProps> = ({ cityName }) => {
       </div>
 
       <div className="mt-6 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 lg:pt-20">
-        <div className="bg-white/20 p-4 md:p-6 rounded-lg flex items-center">
+        <div className="bg-black/50 p-4 md:p-6 rounded-lg flex items-center">
           <FaWind className="text-blue-300 text-xl md:text-2xl mr-3 md:mr-4" />
           <div>
             <p className="text-xs md:text-sm">Wind Speed</p>
@@ -76,7 +75,7 @@ const WeatherDetails: React.FC<WeatherDetailsProps> = ({ cityName }) => {
           </div>
         </div>
 
-        <div className="bg-white/20 p-4 md:p-6 rounded-lg flex items-center">
+        <div className="bg-black/50 p-4 md:p-6 rounded-lg flex items-center">
           <FaCompass className="text-red-300 text-xl md:text-2xl mr-3 md:mr-4" />
           <div>
             <p className="text-xs md:text-sm">Wind Direction</p>
@@ -86,7 +85,7 @@ const WeatherDetails: React.FC<WeatherDetailsProps> = ({ cityName }) => {
           </div>
         </div>
 
-        <div className="bg-white/20 p-4 md:p-6 rounded-lg flex items-center">
+        <div className="bg-black/50 p-4 md:p-6 rounded-lg flex items-center">
           <FaTint className="text-green-300 text-xl md:text-2xl mr-3 md:mr-4" />
           <div>
             <p className="text-xs md:text-sm">Humidity</p>
@@ -96,7 +95,7 @@ const WeatherDetails: React.FC<WeatherDetailsProps> = ({ cityName }) => {
           </div>
         </div>
 
-        <div className="bg-white/20 p-4 md:p-6 rounded-lg flex items-center">
+        <div className="bg-black/50 p-4 md:p-6 rounded-lg flex items-center">
           <FaTachometerAlt className="text-yellow-300 text-xl md:text-2xl mr-3 md:mr-4" />
           <div>
             <p className="text-xs md:text-sm">Pressure</p>
@@ -106,7 +105,7 @@ const WeatherDetails: React.FC<WeatherDetailsProps> = ({ cityName }) => {
           </div>
         </div>
 
-        <div className="bg-white/20 p-4 md:p-6 rounded-lg flex items-center">
+        <div className="bg-black/50 p-4 md:p-6 rounded-lg flex items-center">
           <FaCloud className="text-indigo-300 text-xl md:text-2xl mr-3 md:mr-4" />
           <div>
             <p className="text-xs md:text-sm">Cloudiness</p>
@@ -116,7 +115,7 @@ const WeatherDetails: React.FC<WeatherDetailsProps> = ({ cityName }) => {
           </div>
         </div>
 
-        <div className="bg-white/20 p-4 md:p-6 rounded-lg flex items-center">
+        <div className="bg-black/50 p-4 md:p-6 rounded-lg flex items-center">
           <FaEye className="text-purple-300 text-xl md:text-2xl mr-3 md:mr-4" />
           <div>
             <p className="text-xs md:text-sm">Visibility</p>
@@ -126,7 +125,7 @@ const WeatherDetails: React.FC<WeatherDetailsProps> = ({ cityName }) => {
           </div>
         </div>
 
-        <div className="bg-white/20 p-4 md:p-6 rounded-lg flex items-center">
+        <div className="bg-black/50 p-4 md:p-6 rounded-lg flex items-center">
           <FaSun className="text-orange-300 text-xl md:text-2xl mr-3 md:mr-4" />
           <div>
             <p className="text-xs md:text-sm">Sunrise</p>
@@ -134,7 +133,7 @@ const WeatherDetails: React.FC<WeatherDetailsProps> = ({ cityName }) => {
           </div>
         </div>
 
-        <div className="bg-white/20 p-4 md:p-6 rounded-lg flex items-center">
+        <div className="bg-black/50 p-4 md:p-6 rounded-lg flex items-center">
           <FaCloudSun className="text-red-300 text-xl md:text-2xl mr-3 md:mr-4" />
           <div>
             <p className="text-xs md:text-sm">Sunset</p>

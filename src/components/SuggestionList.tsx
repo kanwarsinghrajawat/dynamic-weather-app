@@ -9,7 +9,7 @@ const SuggestionsList: React.FC<SuggestionsListProps> = ({
   if (suggestions.length === 0 && !error) return null;
 
   return (
-    <ul className="absolute left-0 w-full bg-gray-100 dark:bg-gray-900 text-black dark:text-white border border-gray-300 dark:border-gray-700 rounded shadow-lg">
+    <ul className="left-0 w-full bg-gray-100 text-black  border border-gray-300 dark:border-gray-700 rounded shadow-lg">
       {suggestions.map((suggestion, index) => (
         <li
           key={index}

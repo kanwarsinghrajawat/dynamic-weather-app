@@ -10,7 +10,7 @@ const App: React.FC = () => {
   const { fetchWeather } = UseWeatherData();
 
   useEffect(() => {
-    const defaultCity = "Bengaluru";
+    const defaultCity = "Delhi";
     fetchWeather(defaultCity);
     setSelectedCity(defaultCity);
   }, []);
