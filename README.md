@@ -52,4 +52,3 @@ Project is Running Successfully!
 🔹 Optimized Assets – Convert JPG images to SVG for better performance.
 🔹 Multi-Language Support – Make the app accessible globally.
 🔹 Improved Loading State – Use skeleton loaders or animated placeholders.
-
